@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "bundle.css",
+  "sources": [
+    "..\\src\\App.svelte"
+  ],
+  "sourcesContent": [
+    "<script context=\"module\">\r\n\texport async function preload({ params: { app } }) {\r\n\t\tconsole.log(`loading app bundle '${app}.js'`)\r\n\t\treturn { app };\r\n\t}\r\n</script>\r\n\r\n<script>\r\n\texport let root;\r\n\r\n\tfetch('https://jsonplaceholder.typicode.com/todos/1')\r\n  .then(response => response.json())\r\n\t.then(json => console.log(json));\r\n\t\r\n</script>\r\n\r\n<style>\r\n\th1 {\r\n\t\tcolor: yellowgreen;\r\n\t}\r\n</style>\r\n\r\n<svelte:head>\r\n\t<link rel=\"stylesheet\" href=\"{root}/bundle.css\">\r\n</svelte:head>\r\n\r\n<h1>Hello World!</h1>\r\n"
+  ],
+  "names": [],
+  "mappings": "AAiBC,EAAE,eAAC,CAAC,AACH,KAAK,CAAE,WAAW,AACnB,CAAC"
+}
