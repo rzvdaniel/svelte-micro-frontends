@@ -19,7 +19,7 @@ export default {
 	// 1. In Production, we build the App.svelte component that would be injected into the application host
 	// 2. In Development, we build the stand alone main.js entry which would be used into public/index.html
 	input: inputFile,
-	
+
 	// 1. In Production, we build an EcmaScript bundle.mjs module
 	// 2. In Development, we build a standard Javascript bundle.js
 	output: {
@@ -56,12 +56,13 @@ export default {
 		// If we're building for production (npm run build
 		// instead of npm run dev), minify
 		production && terser(),
-
+		
+		// TODO! Only copy at build time
 		production && copy({
-			// Copy EcmaScript modules and dependent resources from public folder ...
+			// Copy EcmaScript modules and dependent resources from public folder
 			files: ['public/*.mjs', 'public/*.mjs.map', 'public/bundle.css', 'public/*.css.map'],
-			// To external folder "static-apps" from where the application host can access it
-			dest: '../../static-apps/bye-world',
+			// To external folder static-apps from where the parent application host can load it
+			dest: '../../static-apps/blog-posts',
 			options: {
 				verbose: true
 			}

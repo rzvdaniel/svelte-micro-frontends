@@ -1,14 +1,7 @@
-<script context="module">
-	export function preload(page, session) {
-		const { app } = page.params;
-		return { app, page };
-	}
-</script>
-
 <script>
 	export let app;
-	export let page;
-
+  export let page;
+  
 	let loading_component = new Promise(() => {});
 	$: if (process.browser) {
 		console.log(`loading app bundle '/${app}/bundle.mjs'`);

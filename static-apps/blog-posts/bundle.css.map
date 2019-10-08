@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "bundle.css",
+  "sources": [
+    "..\\src\\App.svelte"
+  ],
+  "sourcesContent": [
+    "<script>\r\n\texport let app;\r\n\texport let page;\r\n\tlet posts = [];\r\n\r\n\tfetch('https://jsonplaceholder.typicode.com/posts')\r\n\t\t.then(response => response.json())\r\n\t\t.then(json => posts = json)\r\n\t\r\n</script>\r\n\r\n<style>\r\n\th3::first-letter, p::first-letter {\r\n  \ttext-transform: uppercase;\r\n\t}\r\n\r\n\t.post {\r\n\t\tdisplay: inline-block;\r\n\t\tpadding: 0.2em 0.5em;\r\n\t\tmargin: 0 0.2em 0.2em 0;\r\n\t\tborder-radius: 0.2em;\r\n\t\tbackground-color: #e9e9e9;\r\n\t}\r\n\r\n\t.posts {\r\n\t\tdisplay: grid; \r\n\t\tgrid-template-columns: 1fr 1fr; \r\n\t\tgrip-gap: 1em\r\n\t}\r\n\r\n\t.article {\r\n\t\tmargin-bottom: 20px;\r\n\t}\r\n\r\n</style>\r\n\r\n{#each posts as { id, title, body }}\r\n<div class=\"posts\">\r\n\t<div class=\"article\">\r\n\t\t<h3><a href=\"apps/blog-post-view?id={id}\">{title}</a></h3>\r\n\t\t<p class=\"post\">{body}.</p>\r\n\t</div>\r\n</div>\r\n{/each}\r\n"
+  ],
+  "names": [],
+  "mappings": "AAYC,gBAAE,cAAc,CAAE,eAAC,cAAc,AAAC,CAAC,AACjC,cAAc,CAAE,SAAS,AAC3B,CAAC,AAED,KAAK,cAAC,CAAC,AACN,OAAO,CAAE,YAAY,CACrB,OAAO,CAAE,KAAK,CAAC,KAAK,CACpB,MAAM,CAAE,CAAC,CAAC,KAAK,CAAC,KAAK,CAAC,CAAC,CACvB,aAAa,CAAE,KAAK,CACpB,gBAAgB,CAAE,OAAO,AAC1B,CAAC,AAED,MAAM,cAAC,CAAC,AACP,OAAO,CAAE,IAAI,CACb,qBAAqB,CAAE,GAAG,CAAC,GAAG,CAC9B,QAAQ,CAAE,GAAG;CACd,CAAC,AAED,QAAQ,cAAC,CAAC,AACT,aAAa,CAAE,IAAI,AACpB,CAAC"
+}

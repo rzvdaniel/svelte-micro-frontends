@@ -1,3 +1,11 @@
+<script>
+	import App from './apps/app.svelte';
+</script>
+
+<svelte:head>
+	<title>Svelte Micro Frontends</title>
+</svelte:head>
+
 <style>
 	h1, figure, p {
 		text-align: center;
@@ -32,16 +40,13 @@
 	}
 </style>
 
-<svelte:head>
-	<title>Sapper project template</title>
-</svelte:head>
-
 <h1>Great success!</h1>
 
 <figure>
 	<img alt='Borat' src='great-success.png'>
 	<figcaption>HIGH FIVE!</figcaption>
 </figure>
+
 
 
 

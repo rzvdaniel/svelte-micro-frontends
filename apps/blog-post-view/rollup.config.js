@@ -62,7 +62,7 @@ export default {
 			// Copy EcmaScript modules and dependent resources from public folder
 			files: ['public/*.mjs', 'public/*.mjs.map', 'public/bundle.css', 'public/*.css.map'],
 			// To external folder static-apps from where the parent application host can load it
-			dest: '../../static-apps/hello-world',
+			dest: '../../static-apps/blog-post-view',
 			options: {
 				verbose: true
 			}
