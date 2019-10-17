@@ -29,15 +29,6 @@ label {
 	display: block;
 }
 
-input, button, select, textarea {
-	font-family: inherit;
-	font-size: inherit;
-	padding: 0.4em;
-	margin: 0 0 0.5em 0;
-	box-sizing: border-box;
-	border: 1px solid #ccc;
-	border-radius: 2px;
-}
 
 input:disabled {
 	color: #ccc;
@@ -58,18 +49,4 @@ button:active {
 
 button:focus {
 	border-color: #666;
-}
-
-.post {
-	display: inline-block;
-	padding: 0.2em 0.5em;
-	margin: 0 0.2em 0.2em 0;
-	border-radius: 0.2em;
-	background-color: #e9e9e9;
-}
-
-.posts {
-	display: grid; 
-	grid-template-columns: 1fr 1fr; 
-	grip-gap: 1em
 }

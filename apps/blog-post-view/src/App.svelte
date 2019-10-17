@@ -2,6 +2,10 @@
 	export let app;
 	export let page;
 
+	// If page doesn't exist, this mean that we are running the app in isolation.
+	// When page is defined, it meas that the app is running in the parent website
+	// which fills the "page" parameter like below:
+	// <svelte:component this="{module.default}" app={app} page={page} />
 	const id = page ? page.query.id : 1;
 	let post;
 
@@ -14,20 +18,6 @@
 <style>
 	h1::first-letter, p::first-letter {
   	text-transform: uppercase;
-	}
-
-	.post {
-		display: inline-block;
-		padding: 0.2em 0.5em;
-		margin: 0 0.9em 0.9em 0;
-		border-radius: 0.2em;
-		background-color: #e9e9e9;
-	}
-
-	.posts {
-		display: grid; 
-		grid-template-columns: 1fr 1fr; 
-		grip-gap: 1em
 	}
 
 </style>
@@ -44,4 +34,6 @@
 {:catch err}
 	<strong>Ops! Something went wrong: {err}</strong>
 {/await}
+
+<a href="/">Back to Home</a>
 
