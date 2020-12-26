@@ -2,7 +2,7 @@
 
 This is an experiment that uses Sapper/Svelte combination in a so called **micro frontends** way.
 
-* The main project is the basic Sapper template
+* The main project is the basic Sapper template using rollup (npx degit "sveltejs/sapper-template#rollup" svelte-micro-frontends)
 * In the **/apps** folder I've published independent Svelte apps (npx degit sveltejs/template blog-posts) 
 * During Svelte apps build (npm run build) the result is copied to **/static-apps** folder
 * There are some tweaks being (explained later) to the basic Svelte apps so they work with the main Sapper project
