@@ -1,5 +1,5 @@
 <script>
-	import App from './apps/app.svelte';
+	import App from "./apps/app.svelte";
 </script>
 
 <svelte:head>
@@ -7,6 +7,3 @@
 </svelte:head>
 
 <App app="blog-posts" page="" />
-
-
-

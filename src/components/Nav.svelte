@@ -4,7 +4,7 @@
 
 <style>
 	nav {
-		border-bottom: 1px solid rgba(255,62,0,0.1);
+		border-bottom: 1px solid rgba(255, 62, 0, 0.1);
 		font-weight: 300;
 		padding: 0 1em;
 	}
@@ -16,7 +16,7 @@
 
 	/* clearfix */
 	ul::after {
-		content: '';
+		content: "";
 		display: block;
 		clear: both;
 	}
@@ -26,17 +26,17 @@
 		float: left;
 	}
 
-	.selected {
+	[aria-current] {
 		position: relative;
 		display: inline-block;
 	}
 
-	.selected::after {
+	[aria-current]::after {
 		position: absolute;
-		content: '';
+		content: "";
 		width: calc(100% - 1em);
 		height: 2px;
-		background-color: rgb(255,62,0);
+		background-color: rgb(255, 62, 0);
 		display: block;
 		bottom: -1px;
 	}
@@ -50,8 +50,20 @@
 
 <nav>
 	<ul>
-		<li><a class='{segment === undefined ? "selected" : ""}' href='/'>Home</a></li>
-		<li><a class='{segment === "undefined" ? "selected" : ""}' href='apps/blog-post-add'>Write Post</a></li>
-		<li><a class='{segment === "about" ? "selected" : ""}' href='about'>About</a></li>
+		<li>
+			<a
+				aria-current={segment === undefined ? 'page' : undefined}
+				href=".">Home</a>
+		</li>
+		<li>
+			<a
+				aria-current={segment === 'app' ? 'page' : undefined}
+				href="apps/blog-post-add">Write Post</a>
+		</li>
+		<li>
+			<a
+				aria-current={segment === 'about' ? 'page' : undefined}
+				href="about">About</a>
+		</li>
 	</ul>
 </nav>

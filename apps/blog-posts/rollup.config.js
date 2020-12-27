@@ -1,8 +1,9 @@
 import svelte from 'rollup-plugin-svelte';
-import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
+import commonjs from '@rollup/plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
+import css from 'rollup-plugin-css-only';
 import copy from 'rollup-plugin-cpy'
 
 const production = !process.env.ROLLUP_WATCH;
@@ -14,6 +15,27 @@ const inputFile = production ? 'src/App.svelte' : 'src/main.js';
 // 1. In Production, we build an EcmaScript bundle.mjs module
 // 2. In Development, we build a standard Javascript bundle.js
 const outputFile = production ? 'public/bundle.mjs' : 'public/bundle.js';
+
+function serve() {
+	let server;
+
+	function toExit() {
+		if (server) server.kill(0);
+	}
+
+	return {
+		writeBundle() {
+			if (server) return;
+			server = require('child_process').spawn('npm', ['run', 'start', '--', '--dev'], {
+				stdio: ['ignore', 'inherit', 'inherit'],
+				shell: true
+			});
+
+			process.on('SIGTERM', toExit);
+			process.on('exit', toExit);
+		}
+	};
+}
 
 export default {
 	// 1. In Production, we build the App.svelte component that would be injected into the application host
@@ -32,22 +54,29 @@ export default {
 	},
 	plugins: [
 		svelte({
-			// enable run-time checks when not in production
-			dev: !production,
-			// we'll extract any component CSS out into
-			// a separate file — better for performance
-			css: css => {
-				css.write('public/bundle.css');
+			compilerOptions: {
+				// enable run-time checks when not in production
+				dev: !production
 			}
 		}),
+		// we'll extract any component CSS out into
+		// a separate file - better for performance
+		css({ output: 'bundle.css' }),
 
 		// If you have external dependencies installed from
 		// npm, you'll most likely need these plugins. In
-		// some cases you'll need additional configuration —
+		// some cases you'll need additional configuration -
 		// consult the documentation for details:
-		// https://github.com/rollup/rollup-plugin-commonjs
-		resolve(),
+		// https://github.com/rollup/plugins/tree/master/packages/commonjs
+		resolve({
+			browser: true,
+			dedupe: ['svelte']
+		}),
 		commonjs(),
+
+		// In dev mode, call `npm run start` once
+		// the bundle has been generated
+		!production && serve(),
 
 		// Watch the `public` directory and refresh the
 		// browser on changes when not in production
@@ -56,7 +85,8 @@ export default {
 		// If we're building for production (npm run build
 		// instead of npm run dev), minify
 		production && terser(),
-		
+
+		// Copy apps to static-apps parent folder to be loaded in the main app at runtime
 		// TODO! Only copy at build time
 		production && copy({
 			// Copy EcmaScript modules and dependent resources from public folder
@@ -67,5 +97,8 @@ export default {
 				verbose: true
 			}
 		})
-	]
+	],
+	watch: {
+		clearScreen: false
+	}
 };

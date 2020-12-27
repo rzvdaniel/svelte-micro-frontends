@@ -10,16 +10,15 @@
 	let post;
 
 	let loading = fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
-		.then(response => response.json())
-		.then(json => post = json)
-	
+		.then((response) => response.json())
+		.then((json) => (post = json));
 </script>
 
 <style>
-	h1::first-letter, p::first-letter {
-  	text-transform: uppercase;
+	h1::first-letter,
+	p::first-letter {
+		text-transform: uppercase;
 	}
-
 </style>
 
 {#await loading}
@@ -36,4 +35,3 @@
 {/await}
 
 <a href="/">Back to Home</a>
-
